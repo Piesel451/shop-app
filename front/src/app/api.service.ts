@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class ApiService {
-  private apiUrl = 'http://localhost:8080/api'; // Adres serwera Node.js
+  private apiUrl = 'http://localhost:8080/api';
 
   constructor(private http: HttpClient) { }
 
