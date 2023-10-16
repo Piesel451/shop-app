@@ -1,13 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
 </head>
+
 <body>
     <app-menu></app-menu>
+    
+
+    <div class="slideshow-container">
+
+        
+        <div class="mySlides fade">
+            <img class="slide_image" src="./assets/images/home/img1.jpg" style="width:100%">
+        </div>
+
+        <div class="mySlides fade">
+            <img class="slide_image" src="./assets/images/home/img2.jpg" style="width:100%">
+        </div>
+
+        <div class="mySlides fade">
+            <img class="slide_image" src="./assets/images/home/img3.jpg" style="width:100%">
+        </div>
+
+        <div class="mySlides fade">
+            <img class="slide_image" src="./assets/images/home/img4.jpg" style="width:100%">
+        </div>
+
+        
+        <a class="prev" (click)="plusSlides(-1)">&#10094;</a>
+        <a class="next" (click)="plusSlides(1)">&#10095;</a>
+    </div>
+    <br>
 
     
+    <div style="text-align:center">
+        <span class="dot" (click)="currentSlide(1)"></span>
+        <span class="dot" (click)="currentSlide(2)"></span>
+        <span class="dot" (click)="currentSlide(3)"></span>
+        <span class="dot" (click)="currentSlide(4)"></span>
+    </div>
+
+    <br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br>
+
 </body>
+
 </html>

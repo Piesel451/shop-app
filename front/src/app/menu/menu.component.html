@@ -1,18 +1,14 @@
-<div class="image-container">
-    <img class="logo-image" src="./assets/images/logo.png" alt="Logo">
-    
-    <div class="button-container">
-        <button class="button">Button 1</button>
-        <button class="button">Button 2</button>
-    </div>
-
+<div id="image-container" class="image-container">
+    <img class="logo-image" src="./assets/images/menu/logo.png" alt="Logo">
+    <button class="cart">
+      <img class="cart-image" src="./assets/images/menu/shopping_cart.png" alt="Wózek">
+      <span>W koszyku: 0&nbsp;</span> |  &nbsp; <span> Do zapłaty: 0 PLN</span> 
+    </button>
 </div>
 
-<div class="navbar">
-
-
+<div class="navbar" id="navbar">
     
-    <a href="#">Home</a>
+    <a routerLink="/home">Strona główna</a>
 
     <div class="dropdown">
       <button class="dropbtn">Category 1</button>
@@ -31,6 +27,7 @@
           <a href="#">Product 3</a>
         </div>
       </div> 
+      
 
       <div class="dropdown">
         <button class="dropbtn">Category 3</button>
@@ -41,8 +38,8 @@
         </div>
       </div> 
 
-    <a href="#">Promocje</a>
-    <a href="#">Nowości</a>
-    <a href="#">Kontakt</a>
-    <a href="#">O nas</a>
+    <a href="/sales">Promocje</a>
+    <a href="/news">Nowości</a>
+    <a href="/contact">Kontakt</a>
+    <a href="/about-us">O nas</a>
   </div>

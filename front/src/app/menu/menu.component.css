@@ -1,9 +1,23 @@
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
 .navbar {
     overflow: hidden;
     display: flex;
     flex-wrap: nowrap;
     justify-content: center;
     background-color: #333;
+    margin: 0;
+    padding: 0;
+   
+  }
+  
+  .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
   }
   
   .navbar a {
@@ -64,22 +78,37 @@
     align-items: center;
     justify-content: space-between;
   }
-
-  .button-container{
-
-  }
   
   .logo-image {
     width: 200px;
     height: 200px;
     margin-left: 200px;
   }
-  
-  .buttons {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .button {
 
+  .cart {
+    background-color: gray;
+    height:50px;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    margin-right: 200px;
+  }
+
+  .cart:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+
+  .cart-image{
+    width: 50px;
+    height: 50px;
   }
