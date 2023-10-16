@@ -9,7 +9,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactComponent } from './contact/contact.component';
 import { SalesComponent } from './sales/sales.component';
 import { NewsComponent } from './news/news.component';
-import { ClassicGuitarsComponent } from './classic-guitars/classic-guitars.component';
+import { ProductListComponent } from './product-list/product-list.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { ClassicGuitarsComponent } from './classic-guitars/classic-guitars.compo
     ContactComponent,
     SalesComponent,
     NewsComponent,
-    ClassicGuitarsComponent
+    ProductListComponent,
   ],
   imports: [
     BrowserModule,
