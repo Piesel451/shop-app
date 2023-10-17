@@ -5,7 +5,16 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactComponent } from './contact/contact.component';
 import { SalesComponent } from './sales/sales.component';
 import { NewsComponent } from './news/news.component';
-import { ProductListComponent } from './product-list/product-list.component';
+import { ClassicGuitarsComponent } from './classic-guitars/classic-guitars.component';
+import { AcousticGuitarsComponent } from './acoustic-guitars/acoustic-guitars.component';
+import { ElectricGuitarsComponent } from './electric-guitars/electric-guitars.component';
+import { KeyboardsComponent } from './keyboards/keyboards.component';
+import { SynthesizersComponent } from './synthesizers/synthesizers.component';
+import { ElectricPianosComponent } from './electric-pianos/electric-pianos.component';
+import { AmplifiersComponent } from './amplifiers/amplifiers.component';
+import { MicrophonesComponent } from './microphones/microphones.component';
+import { ProcessorsComponent } from './processors/processors.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -14,10 +23,19 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'sales', component: SalesComponent },
   { path: 'news', component: NewsComponent },
-  { path: 'product-list', component: ProductListComponent },
-  // { path: 'acoustic_guitars', component: ProductlistComponent, data: { category: 'akustyczne' } },
-  // { path: 'classic_guitars', component: ProductlistComponent, data: { category: 'klasyczne' } },
-  // { path: 'electric_guitars', component: ProductlistComponent, data: { category: 'elektryczne' } },
+
+  { path: 'classic-guitars', component: ClassicGuitarsComponent },
+  { path: 'acoustic-guitars', component: AcousticGuitarsComponent},
+  { path: 'electric-guitars', component: ElectricGuitarsComponent},
+
+  { path: 'keyboards', component: KeyboardsComponent},
+  { path: 'synthesizers', component: SynthesizersComponent},
+  { path: 'electric-pianos', component: ElectricPianosComponent},
+
+  { path: 'amplifiers', component: AmplifiersComponent},
+  { path: 'microphones', component: MicrophonesComponent},
+  { path: 'processors', component: ProcessorsComponent},
+
 ];
 
 @NgModule({

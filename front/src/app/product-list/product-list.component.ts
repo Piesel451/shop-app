@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, Input, OnInit} from '@angular/core';
 import { ApiService } from '../api.service';
 
 @Component({
@@ -8,13 +8,16 @@ import { ApiService } from '../api.service';
 })
 
 export class ProductListComponent implements OnInit{
-  
+
+  @Input() category!: string;
+  @Input() type!: string;
+
   products: Product[] = [];
 
   constructor(private apiService: ApiService) {}
 
   ngOnInit(){
-    this.apiService.getProducts('electric').subscribe((data: any) => {
+    this.apiService.getProducts(this.category, this.type).subscribe((data: any) => {
       this.products = data;
     });
   }
@@ -24,6 +27,8 @@ export class ProductListComponent implements OnInit{
 //przerzucić potem do osobnego pliku
 interface Product {
   id: number;
+  type: string;
   category: string,
   name: string;
+  price: number;
 }

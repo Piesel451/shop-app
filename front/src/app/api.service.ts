@@ -10,8 +10,11 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  getProducts(category: string) {
-    const params = new HttpParams().set('category', category);
+  getProducts(category: string, type:string) {
+    const params = new HttpParams()
+    .set('category', category) 
+    .set('type', type);
+
     return this.http.get(`${this.apiUrl}/products`, { params });
   }
   

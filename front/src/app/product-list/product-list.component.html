@@ -1,5 +1,15 @@
-<div *ngFor="let product of products">
-    <p>ID: {{ product.id }}</p>
-    <p>Category: {{ product.category }}</p>
-    <p>Name: {{ product.name }}</p>
+<div class="main_container">
+
+    <app-filters></app-filters>
+    
+    <div class="card_container">
+        <div class="card" *ngFor="let product of products">
+            <img src="./assets/images/placeholder.jpg" alt="placeholder_image" style="width:100%">
+            <p>{{ product.name }}</p>
+            <p>{{ product.price }} PLN</p>
+            <p><button>Dodaj do koszyka</button></p>
+        </div>
+    </div>
 </div>
+
+
