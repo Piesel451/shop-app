@@ -1,11 +1,13 @@
-.filter_container {
-    width: 25%;
-    padding: 20px;
-    text-align: center;
+:host{
+  width: 25%;
+  display: flex;
+  flex-wrap: nowrap;
+  text-align: center;
+  justify-content: center;
 }
 
-.slidecontainer {
-    width: 100%;
+  .slidecontainer {
+      
   }
   
   .slider {

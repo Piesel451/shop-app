@@ -12,6 +12,8 @@ export class ProductListComponent implements OnInit{
   @Input() category!: string;
   @Input() type!: string;
 
+  // @Input() filter_priceRange!: number;
+
   products: Product[] = [];
 
   constructor(private apiService: ApiService) {}

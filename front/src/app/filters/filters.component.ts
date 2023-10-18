@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {MatSliderModule} from '@angular/material/slider';
 import { FormsModule } from '@angular/forms';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-filters',
@@ -9,10 +9,16 @@ import { FormsModule } from '@angular/forms';
 })
 export class FiltersComponent {
 
-  priceRange!: number;
+  
+
+  priceRange = 0;
+
+  RangeChange(){
+    let demo = document.getElementById('demo') as HTMLElement;
+    demo.innerHTML = `${this.priceRange} PLN`;
+  }
 
   applyFilter() {
-    const selectedPrice = this.priceRange;
-    console.log(selectedPrice)
+    
   }
 }

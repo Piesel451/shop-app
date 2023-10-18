@@ -17,5 +17,9 @@ export class ApiService {
 
     return this.http.get(`${this.apiUrl}/products`, { params });
   }
+
+  filterProducts(price: number){
+    const params = new HttpParams()
+  }
   
 }

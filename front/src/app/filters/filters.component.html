@@ -1,7 +1,8 @@
 <div class="filter_container">
     <div class="slidecontainer">
-        <p>Zakres cen:</p>
-        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-        <p>: <span id="demo"></span></p>
+        <p>Max cena:</p>
+        <input type="range" (ngModelChange)="RangeChange()" [(ngModel)]="priceRange" [(ngModel)]="priceRange" min="0" max="3500" value="50" class="slider" id="myRange">
+        <p><span id="demo">0 PLN</span></p>
+        <button class="apply_filter" (click)="applyFilter()">Filtruj</button>
     </div>
 </div>
