@@ -9,7 +9,8 @@ import { Output, EventEmitter } from '@angular/core';
 })
 export class FiltersComponent {
 
-  
+  @Output()
+  change: EventEmitter<number> = new EventEmitter<number>();
 
   priceRange = 0;
 
@@ -19,6 +20,6 @@ export class FiltersComponent {
   }
 
   applyFilter() {
-    
+    this.change.emit(this.priceRange);
   }
 }

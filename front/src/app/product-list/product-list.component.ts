@@ -12,11 +12,22 @@ export class ProductListComponent implements OnInit{
   @Input() category!: string;
   @Input() type!: string;
 
-  // @Input() filter_priceRange!: number;
+  PriceRangeEmmitedFromFilter: number = 0;
 
   products: Product[] = [];
+  filteredProducts: Product[] = [];
 
   constructor(private apiService: ApiService) {}
+
+  FilterApplyHandler(valueEmitted: number) {
+    this.PriceRangeEmmitedFromFilter = valueEmitted;
+
+    this.filteredProducts = this.products.filter((product) => {
+      return product.price <= this.PriceRangeEmmitedFromFilter;
+    });
+  }
+
+
 
   ngOnInit(){
     this.apiService.getProducts(this.category, this.type).subscribe((data: any) => {
