@@ -22,4 +22,6 @@ export class FiltersComponent {
   applyFilter() {
     this.change.emit(this.priceRange);
   }
+
+
 }

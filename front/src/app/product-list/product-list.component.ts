@@ -17,16 +17,26 @@ export class ProductListComponent implements OnInit{
   products: Product[] = [];
   filteredProducts: Product[] = [];
 
+  filterClickedFlag: boolean = false;
+
   constructor(private apiService: ApiService) {}
 
   FilterApplyHandler(valueEmitted: number) {
-    this.PriceRangeEmmitedFromFilter = valueEmitted;
+    if(typeof valueEmitted === "number")
+    {
+      this.filterClickedFlag = true;
+      this.PriceRangeEmmitedFromFilter = valueEmitted;
+      this.filteredProducts = this.products.filter((product) => {
+        console.log(product.price + " <= " + this.PriceRangeEmmitedFromFilter)
+        return product.price <= this.PriceRangeEmmitedFromFilter;
+      });
+      console.log(this.filteredProducts)
+    }
+    else{
 
-    this.filteredProducts = this.products.filter((product) => {
-      return product.price <= this.PriceRangeEmmitedFromFilter;
-    });
+    }
+
   }
-
 
 
   ngOnInit(){
