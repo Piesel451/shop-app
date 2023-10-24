@@ -8,7 +8,7 @@
                 <img src="./assets/images/placeholder.jpg" alt="placeholder_image" style="width:100%">
                 <p>{{ product.name }}</p>
                 <p class="price">{{ product.price }} PLN</p>
-                <p><button>Dodaj do koszyka</button></p>
+                <p><button (click) = "addToCart(product)">Dodaj do koszyka</button></p>
             </div>
         </ng-container>
         <ng-template #showAllProducts>
@@ -16,7 +16,7 @@
                 <img src="./assets/images/placeholder.jpg" alt="placeholder_image" style="width:100%">
                 <p>{{ product.name }}</p>
                 <p class="price">{{ product.price }} PLN</p>
-                <p><button>Dodaj do koszyka</button></p>
+                <p><button (click) = "addToCart(product)">Dodaj do koszyka</button></p>
             </div>
         </ng-template>
     </div>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <app-menu></app-menu>
+    <div class="sign_in_container">
+        <h1>Zaloguj się</h1>
+        <hr>
+        <form (ngSubmit)="logUser()">
+            <label for="email"><b>Email</b></label>
+            <input type="text" placeholder="Podaj email" name="email" id="email" [(ngModel)]="email" required>
+
+            <label for="psw"><b>Hasło</b></label>
+            <input type="password" placeholder="Podaj hasło" name="psw" id="psw" [(ngModel)]="psw" required>
+        
+            <hr>
+        
+            <button type="submit" class="loginbtn">Zaloguj</button>
+        </form>
+      <div class="sign_up_contaier">
+        <p>Nie masz u nas konta? <a href="/sign_up">Zarejestruj się</a>.</p>
+      </div>
+    </div>
+</body>
+</html>

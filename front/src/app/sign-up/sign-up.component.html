@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <app-menu></app-menu>
+    <div class="sign_up_container">
+        <h1>Zarejestruj się</h1>
+        <p>Wypełnij ten formularz aby założyć konto.</p>
+        <hr>
+        <form (ngSubmit)="addUser()">
+            <label for="email"><b>Email</b></label>
+            <input type="text" placeholder="Podaj email" name="email" id="email" [(ngModel)]="email" required>
+        
+            <label for="username"><b>Nazwa użytkownika</b></label>
+            <input type="text" placeholder="Podaj nazwę użytkownika" name="username" id="username" [(ngModel)]="username" required>
+
+            <label for="psw"><b>Hasło</b></label>
+            <input type="password" placeholder="Podaj hasło" name="psw" id="psw" [(ngModel)]="psw" required>
+        
+            <label for="psw-repeat"><b>Powtórz hasło</b></label>
+            <input type="password" placeholder="Powtórz hasło" name="psw_repeat" id="psw_repeat" [(ngModel)]="psw_repeat" required>
+            <hr>
+            <p>Tworząc konto zgadzasz się na naszą politykę prywatoności <a href="#">Terms & Privacy</a>.</p>
+        
+            <button type="submit" class="registerbtn">Potwierdź</button>
+        </form>
+      <div class="sign_in_contaier">
+        <p>Masz już u nas konto? <a href="/login">Zaloguj się</a>.</p>
+      </div>
+    </div>
+</body>
+</html>

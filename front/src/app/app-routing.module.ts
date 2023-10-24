@@ -14,6 +14,9 @@ import { ElectricPianosComponent } from './electric-pianos/electric-pianos.compo
 import { AmplifiersComponent } from './amplifiers/amplifiers.component';
 import { MicrophonesComponent } from './microphones/microphones.component';
 import { ProcessorsComponent } from './processors/processors.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { LoginComponent } from './login/login.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
 const routes: Routes = [
@@ -23,6 +26,11 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'sales', component: SalesComponent },
   { path: 'news', component: NewsComponent },
+
+  {path: 'sign_up', component: SignUpComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'user_profile', component: UserProfileComponent},
+
 
   { path: 'classic-guitars', component: ClassicGuitarsComponent },
   { path: 'acoustic-guitars', component: AcousticGuitarsComponent},

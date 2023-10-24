@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Product } from './product-list/product.interface';
+import { User } from './sign-up/userInterface';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +20,23 @@ export class ApiService {
     return this.http.get(`${this.apiUrl}/products`, { params });
   }
 
-  filterProducts(price: number){
-    const params = new HttpParams()
+  instertToCart(product: Product){
+    const addToCartUrl = `${this.apiUrl}/addToCart`;
+    return this.http.post(addToCartUrl, product);
   }
+
+  addUser(user: User){
+    const addUserUrl = `${this.apiUrl}/addUser`;
+    return this.http.post(addUserUrl, user);
+  }
+
+  logUser(user: User){
+    const logUserUrl = `${this.apiUrl}/logUser`;
+    return this.http.post(logUserUrl, user);
+  }
+
+  // filterProducts(price: number){
+  //   const params = new HttpParams()
+  // }
   
 }

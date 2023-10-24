@@ -21,6 +21,10 @@ import { MicrophonesComponent } from './microphones/microphones.component';
 import { ProcessorsComponent } from './processors/processors.component';
 import { FiltersComponent } from './filters/filters.component';
 import { FormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { LoginComponent } from './login/login.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -42,12 +46,16 @@ import { FormsModule } from '@angular/forms';
     MicrophonesComponent,
     ProcessorsComponent,
     FiltersComponent,
+    SignUpComponent,
+    LoginComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

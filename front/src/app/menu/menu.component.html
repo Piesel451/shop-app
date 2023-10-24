@@ -1,45 +1,50 @@
+<div class="topnav">
+  <a class="active" href="/login">Logowanie</a>
+  <a href="/sign_up">Rejestracja</a>
+</div>
+
 <div id="image-container" class="image-container">
-    <img class="logo-image" src="./assets/images/menu/logo.png" alt="Logo">
-    <button class="cart">
-      <img class="cart-image" src="./assets/images/menu/shopping_cart.png" alt="Wózek">
-      <span>W koszyku: 0&nbsp;</span> |  &nbsp; <span> Do zapłaty: 0 PLN</span> 
-    </button>
+  <img class="logo-image" src="./assets/images/menu/logo.png" alt="Logo">
+  <button class="cart">
+    <img class="cart-image" src="./assets/images/menu/shopping_cart.png" alt="Wózek">
+    <span>W koszyku: {{items_ammount}} &nbsp;</span> | &nbsp; <span> Do zapłaty: 0 PLN</span>
+  </button>
 </div>
 
 <div class="navbar" id="navbar">
-    
-    <a routerLink="/home">Strona główna</a>
 
-    <div class="dropdown">
-      <button class="dropbtn">Gitary</button>
-      <div class="dropdown-content">
-        <a href="/classic-guitars">Gitary klasyczne</a>
-        <a href="/acoustic-guitars">Gitary akustyczne</a>
-        <a href="/electric-guitars">Gitary elektryczne</a>
-      </div>
-    </div> 
+  <a routerLink="/home">Strona główna</a>
 
-    <div class="dropdown">
-        <button class="dropbtn">Instrumenty klawiszowe</button>
-        <div class="dropdown-content">
-          <a href="/keyboards">Keyboardy</a>
-          <a href="/synthesizers">Sentyzatory</a>
-          <a href="/electric-pianos">Pianina elektroniczne</a>
-        </div>
-      </div> 
-      
-
-      <div class="dropdown">
-        <button class="dropbtn">Sprzęt nagłośnieniowy</button>
-        <div class="dropdown-content">
-          <a href="/amplifiers">Wzmacniacze</a>
-          <a href="/microphones">Mikrofony</a>
-          <a href="/processors">Procesory, efekty</a>
-        </div>
-      </div> 
-
-    <a href="/sales">Promocje</a>
-    <a href="/news">Nowości</a>
-    <a href="/contact">Kontakt</a>
-    <a href="/about-us">O nas</a>
+  <div class="dropdown">
+    <button class="dropbtn">Gitary</button>
+    <div class="dropdown-content">
+      <a href="/classic-guitars">Gitary klasyczne</a>
+      <a href="/acoustic-guitars">Gitary akustyczne</a>
+      <a href="/electric-guitars">Gitary elektryczne</a>
+    </div>
   </div>
+
+  <div class="dropdown">
+    <button class="dropbtn">Instrumenty klawiszowe</button>
+    <div class="dropdown-content">
+      <a href="/keyboards">Keyboardy</a>
+      <a href="/synthesizers">Sentyzatory</a>
+      <a href="/electric-pianos">Pianina elektroniczne</a>
+    </div>
+  </div>
+
+
+  <div class="dropdown">
+    <button class="dropbtn">Sprzęt nagłośnieniowy</button>
+    <div class="dropdown-content">
+      <a href="/amplifiers">Wzmacniacze</a>
+      <a href="/microphones">Mikrofony</a>
+      <a href="/processors">Procesory, efekty</a>
+    </div>
+  </div>
+
+  <a href="/sales">Promocje</a>
+  <a href="/news">Nowości</a>
+  <a href="/contact">Kontakt</a>
+  <a href="/about-us">O nas</a>
+</div>

@@ -1,35 +1,15 @@
 const cors = require('cors');
 const express = require('express');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const app = express();
 const port = 8080;
 
-const mongoose = require("mongoose")
-const CONNECTION_STRING = "mongodb+srv://admin:123@cluster0.3ozufrb.mongodb.net/"
+const db = require('./dbConnection');
+const productModel = require('./models/productModel');
+const userModel = require('./models/userModel');
 
-class Database {
-  constructor() {
-    this._connect();
-  }
-  _connect() {
-    mongoose.connect(CONNECTION_STRING, {useNewUrlParser: true})
-      .then(() => {
-        console.log('Database connection successful');
-      })
-      .catch((err) => {
-        console.error('Database connection failed');
-      });
-  }
-}
-module.exports = new Database();
-
-
-const productSchema = new mongoose.Schema({
-  category: String,
-  type: String,
-  price: Number
- });
-
-const productModel =  mongoose.model("productModel", productSchema);
+const JWT_SECRET = 'Yd4#5aT!9HxK*uMvRjPqZs2v4y7z9B&E';
 
 const corsOptions = {
   origin: 'http://localhost:4200',
@@ -39,6 +19,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
+
 app.get('/', (req, res) => {
   res.send('Witaj na stronie głównej!');
 });
@@ -46,42 +27,115 @@ app.get('/', (req, res) => {
 
 app.get('/products', async (req, res) => {
   const { category, type } = req.query
-
   try {
-    const products = await productModel.find(({category: category}, {type: type})).lean();
+    const products = await productModel.find({category: category, type: type}).lean();
     console.log(products);
-   
+
+    if (products.length === 0) {
+      res.status(404).json({ error: "Brak produktów spełniających kryteria filtrowania." });
+    } else {
+      res.json(products);
+    }   
   }catch (error) {
-    console.log(error)
+    console.error(error);
+    res.status(500).json({ error: "Zapytanie do bazy danych nie powiodło się." });
 }
 
-
-  // productModel.find(({category: category}, {type: type}), (err, val) => {
-  //   if(err){
-  //     res.send("Błąd bazy danych!")
-  //   }
-  //   else{
-  //     if(val.length == 0){
-  //       res.send("Brak produktów odpowiadających tej kategori");
-  //     }
-  //     else{
-  //       console.log(val)
-  //       res.send(val);
-  //     }
-  //   }
-  // })
-
-  // if(category && type){
-  //   const filteredProducts = products.filter(products => products.category === category && products.type === type);
-  
-  //   if (filteredProducts.length === 0) {
-  //     res.status(404).json({ error: "Brak produktów spełniających kryteria filtrowania." });
-  //   } else {
-  //     res.json(filteredProducts);
-  //   }
-  // }
 });
 
+app.post('/addToCart', (req, res) => {
+
+})
+
+function isValidEmail(email) {
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  return emailRegex.test(email);
+}
+
+function isStrongPassword(password) {
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  return passwordRegex.test(password);
+}
+
+app.post('/addUser', async (req, res) => {
+  
+  const userData = req.body;
+
+  const existingEmail = await userModel.findOne({email: userData.email}).lean();
+  const existingUsername = await  userModel.findOne({username: userData.username}).lean();
+  if (!existingEmail && !existingUsername) {
+    if (!isValidEmail(userData.email)) {
+      return res.status(400).json({ error: "Nieprawidłowy format adresu email" });
+    }
+  
+    if (!isStrongPassword(userData.psw)) {
+      return res.status(400).json({ error: "Zbyt słabe hasło" });
+    }
+  
+    bcrypt.hash(userData.psw, 10, (err, hash) => {
+      if (err) {
+        return res.status(500).json({ error: 'Błąd hashowania hasła' });
+      }
+  
+      const newUser = new userModel({
+        email: userData.email,
+        username: userData.username,
+        password: hash,
+      });
+  
+      newUser.save()
+      .then((result) => {
+        res.status(200).json({ message: 'Rejestracja przebiegła pomyślnie' });
+      })
+      .catch((error) => {
+        res.status(500).json({ error: 'Błąd podczas rejestracji użytkownika' });
+      });
+    });
+  } else {
+    return res.status(400).json({ error: 'Ta nazwa użytkownika lub email już znajduje się w bazie danych' });
+  }
+});
+
+//weryfikacja tokenu
+function verifyToken(req, res, next) {
+  const token = req.header('Authorization');
+  if (!token) {
+    return res.status(403).json({ error: 'No token provided' });
+  }
+
+  jwt.verify(token, JWT_SECRET, (err, decoded) => {
+    if (err) {
+      return res.status(401).json({ error: 'Failed to authenticate token' });
+    }
+    req.userId = decoded.userId;
+    next();
+  });
+}
+
+app.post('/logUser', async (req, res) => {
+  const userData = req.body;
+  const { email, psw } = userData;
+
+  try {
+    const user = await userModel.findOne({ email }).lean();
+
+    if (!user) {
+      return res.status(400).json({ error: 'Użytkownik nie znaleziony' });
+    }
+    const passwordMatch = await bcrypt.compare(psw, user.password);
+
+    if (passwordMatch) {
+      //JWT TOKEN
+      const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '1h' })
+      console.log(token)
+      res.status(200).json({ message: 'Pomyślnie zalogowano',token, user });
+    } else {
+      res.status(401).json({ error: 'Niepoprawne hasło' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Login failed' });
+  }
+})
 
 app.listen(port, () => {
   console.log('Server Started, Port: ', port);
