@@ -25,6 +25,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { LoginComponent } from './login/login.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
+import { AuthService } from './auth.service';
+
 
 @NgModule({
   declarations: [
@@ -57,7 +60,11 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     FormsModule,
     FontAwesomeModule
   ],
-  providers: [],
+  providers: [
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService,
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,6 +2,7 @@ const cors = require('cors');
 const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const cookieParser = require("cookie-parser");
 const app = express();
 const port = 8080;
 
@@ -17,6 +18,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.use(cookieParser());
 app.use(express.json());
 
 
@@ -97,20 +99,25 @@ app.post('/addUser', async (req, res) => {
 });
 
 //weryfikacja tokenu
-function verifyToken(req, res, next) {
-  const token = req.header('Authorization');
+function authorization(req, res, next) {
+  const token = req.cookies.access_token;
   if (!token) {
-    return res.status(403).json({ error: 'No token provided' });
+    return res.sendStatus(403);
   }
-
-  jwt.verify(token, JWT_SECRET, (err, decoded) => {
-    if (err) {
-      return res.status(401).json({ error: 'Failed to authenticate token' });
-    }
-    req.userId = decoded.userId;
-    next();
-  });
+  try {
+    const data = jwt.verify(token, JWT_SECRET);
+    return next();
+  } catch {
+    return res.sendStatus(403);
+  }
 }
+
+app.get("/logout", authorization, (req, res) => {
+  return res
+    .clearCookie("access_token")
+    .status(200)
+    .json({ message: "Successfully logged out" });
+});
 
 app.post('/logUser', async (req, res) => {
   const userData = req.body;
@@ -127,8 +134,16 @@ app.post('/logUser', async (req, res) => {
     if (passwordMatch) {
       //JWT TOKEN
       const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '1h' })
-      console.log(token)
-      res.status(200).json({ message: 'Pomyślnie zalogowano',token, user });
+
+      return res
+      .cookie("access_token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        path: '/',
+      })
+      .status(200)
+      .json({ message: 'Pomyślnie zalogowano',token, user });
+      
     } else {
       res.status(401).json({ error: 'Niepoprawne hasło' });
     }

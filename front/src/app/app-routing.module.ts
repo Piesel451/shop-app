@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, UrlSegment } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactComponent } from './contact/contact.component';
@@ -17,6 +17,8 @@ import { ProcessorsComponent } from './processors/processors.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { LoginComponent } from './login/login.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { inject } from '@angular/core/testing';
+import { AuthService } from './auth.service';
 
 
 const routes: Routes = [
@@ -29,7 +31,11 @@ const routes: Routes = [
 
   {path: 'sign_up', component: SignUpComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'user_profile', component: UserProfileComponent},
+  {
+    path: 'user_profile', 
+    component: UserProfileComponent,
+    canActivate: [AuthService]
+  },
 
 
   { path: 'classic-guitars', component: ClassicGuitarsComponent },

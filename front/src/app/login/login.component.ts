@@ -40,6 +40,7 @@ export class LoginComponent {
     this.apiService.logUser(user).subscribe(
       (response) => {
         alert("Pomyślnie zalogowano !")
+        console.log(response)
         this.router.navigate(['/user_profile']);
       },
       (error) => {
