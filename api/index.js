@@ -28,6 +28,7 @@ app.get('/', (req, res) => {
 
 
 app.get('/products', async (req, res) => {
+  
   const { category, type } = req.query
   try {
     const products = await productModel.find({category: category, type: type}).lean();
@@ -60,7 +61,6 @@ function isStrongPassword(password) {
 }
 
 app.post('/addUser', async (req, res) => {
-  
   const userData = req.body;
 
   const existingEmail = await userModel.findOne({email: userData.email}).lean();
@@ -135,15 +135,8 @@ app.post('/logUser', async (req, res) => {
       //JWT TOKEN
       const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '1h' })
 
-      return res
-      .cookie("access_token", token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        path: '/',
-      })
-      .status(200)
-      .json({ message: 'Pomyślnie zalogowano',token, user });
-      
+      return res.status(200).json({token})
+
     } else {
       res.status(401).json({ error: 'Niepoprawne hasło' });
     }

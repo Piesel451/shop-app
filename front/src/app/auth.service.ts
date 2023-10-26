@@ -11,6 +11,10 @@ export class AuthService implements CanActivate{
 
   constructor(public jwtHelper: JwtHelperService, private cookieService: CookieService) {}
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+    return this.isLogged()
+  }
+
+  isLogged(){
     const token = this.cookieService.get('access_token');
     return !this.jwtHelper.isTokenExpired(token);
   }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class UserProfileComponent {
 
+  constructor(private authService: AuthService){}
+
+  // this.authService.canActivate(){
+  //   return 
+  // }
 }

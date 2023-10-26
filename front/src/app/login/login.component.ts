@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { User } from '../sign-up/userInterface';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+
 
 @Component({
   selector: 'app-login',
@@ -12,7 +14,7 @@ export class LoginComponent {
   email: string = '';
   psw: string = '';
   username: string = ''
-  constructor(private apiService: ApiService, private router: Router) {}
+  constructor(private apiService: ApiService, private router: Router, private cookieService: CookieService) {}
 
   logUser(){
     if(this.email === ""){
@@ -37,19 +39,22 @@ export class LoginComponent {
       psw: this.psw,
     };
 
+
+
     this.apiService.logUser(user).subscribe(
-      (response) => {
-        alert("Pomyślnie zalogowano !")
-        console.log(response)
+      (response: any) => {
+        const token = 'token' in response ? response['token'].toString() : ''  
+        this.cookieService.set('access_token', token);
         this.router.navigate(['/user_profile']);
+      
       },
       (error) => {
         if(error.status === 401){
-          alert("Użytkownik nie istnieje!")
+          alert("Niepoprawne hasło!")
           return;
         }
-        if(error.status === 401){
-          alert("Niepoprawne hasło!")
+        if(error.status === 400){
+          alert("Nie ma takiego użytkownika!")
           return;
         } else {
           alert("Wystąpił błąd logowania. Spróbuj ponownie!")
