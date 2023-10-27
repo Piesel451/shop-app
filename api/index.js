@@ -32,7 +32,6 @@ app.get('/products', async (req, res) => {
   const { category, type } = req.query
   try {
     const products = await productModel.find({category: category, type: type}).lean();
-    console.log(products);
 
     if (products.length === 0) {
       res.status(404).json({ error: "Brak produktów spełniających kryteria filtrowania." });
@@ -144,6 +143,15 @@ app.post('/logUser', async (req, res) => {
     res.status(500).json({ error: 'Login failed' });
   }
 })
+
+
+app.post('/getCurrentUser', async (req, res) => {
+  
+  const { token } = req.body
+  const decodedToken = jwt.verify(token, JWT_SECRET);
+  res.status(200).json("test");
+
+});
 
 app.listen(port, () => {
   console.log('Server Started, Port: ', port);
