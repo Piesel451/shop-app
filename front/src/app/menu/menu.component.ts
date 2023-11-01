@@ -1,5 +1,7 @@
 import { ChangeDetectorRef, Component, HostListener} from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
+import { CartService } from '../cart.service';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -9,22 +11,19 @@ import { Output, EventEmitter } from '@angular/core';
 export class MenuComponent {
 
   items_ammount = 0;
+  constructor(private router: Router,private changeDetectorRef: ChangeDetectorRef, private cartService: CartService) {}
 
-  // constructor(private changeDetectorRef: ChangeDetectorRef) {}
-  
-  // ngOnInit() {
-  //   this.updateCartItemsAmount();
-  // }
+  ngOnInit() {
+    this.cartService.updateCartItemsAmount();
 
-  // updateCartItemsAmount() {
-  //   const cartItemsJSON = JSON.parse(localStorage.getItem('cartItems')!);
-  //   if (cartItemsJSON !== null) {
-  //     this.items_ammount = Object.keys(cartItemsJSON).length;
-  //   } else {
-  //     this.items_ammount = 0;
-  //   }
-  //   this.changeDetectorRef.detectChanges();
-  // }
+    this.cartService.cartItemsAmount$.subscribe((itemsAmount) => {
+      this.items_ammount = itemsAmount;
+      this.changeDetectorRef.detectChanges();
+    });
+  }
 
+  redirectToCart(){
+    this.router.navigate(['/cart']);
+  }
   
 }

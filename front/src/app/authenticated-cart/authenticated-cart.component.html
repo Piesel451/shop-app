@@ -1,0 +1,2 @@
+<app-menu *ngIf="!authService.isLogged()"></app-menu>
+<app-menu-logged *ngIf="authService.isLogged()"></app-menu-logged>

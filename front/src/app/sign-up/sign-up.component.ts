@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../api.service';
 import { User } from './userInterface';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -15,7 +16,7 @@ export class SignUpComponent {
   psw_repeat: string = '';
 
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, public authService: AuthService) {}
 
   
   addUser(){ // haslo: 123 + User + numer usera + 123*

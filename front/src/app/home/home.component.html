@@ -9,7 +9,8 @@
 </head>
 
 <body>
-    <app-menu></app-menu>
+    <app-menu *ngIf="!authService.isLogged()"></app-menu>
+    <app-menu-logged *ngIf="authService.isLogged()"></app-menu-logged>
     
 
     <div class="slideshow-container">

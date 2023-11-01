@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-processors',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./processors.component.css']
 })
 export class ProcessorsComponent {
-
+  constructor(public authService: AuthService) {}
 }

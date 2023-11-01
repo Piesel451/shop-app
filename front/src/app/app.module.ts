@@ -27,6 +27,10 @@ import { LoginComponent } from './login/login.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 import { AuthService } from './auth.service';
+import { MenuLoggedComponent } from './menu-logged/menu-logged.component';
+import { NonAuthenticatedCartComponent } from './non-authenticated-cart/non-authenticated-cart.component';
+import { AuthenticatedCartComponent } from './authenticated-cart/authenticated-cart.component';
+import { CartComponent } from './cart/cart.component';
 
 
 @NgModule({
@@ -52,6 +56,10 @@ import { AuthService } from './auth.service';
     SignUpComponent,
     LoginComponent,
     UserProfileComponent,
+    MenuLoggedComponent,
+    NonAuthenticatedCartComponent,
+    AuthenticatedCartComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

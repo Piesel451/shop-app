@@ -5,7 +5,7 @@
 
 <div id="image-container" class="image-container">
   <img class="logo-image" src="./assets/images/menu/logo.png" alt="Logo">
-  <button class="cart">
+  <button class="cart" (click) = "redirectToCart()">
     <img class="cart-image" src="./assets/images/menu/shopping_cart.png" alt="Wózek">
     <span>W koszyku: {{items_ammount}} &nbsp;</span> | &nbsp; <span> Do zapłaty: 0 PLN</span>
   </button>

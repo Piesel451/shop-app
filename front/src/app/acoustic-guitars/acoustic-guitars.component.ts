@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-acoustic-guitars',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./acoustic-guitars.component.css']
 })
 export class AcousticGuitarsComponent {
-
+  constructor(public authService: AuthService) {}
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-news',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./news.component.css']
 })
 export class NewsComponent {
-
+  constructor(public authService: AuthService) {}
 }

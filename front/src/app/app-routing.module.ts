@@ -19,6 +19,9 @@ import { LoginComponent } from './login/login.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { inject } from '@angular/core/testing';
 import { AuthService } from './auth.service';
+import { NonAuthenticatedCartComponent } from './non-authenticated-cart/non-authenticated-cart.component';
+import { AuthenticatedCartComponent } from './authenticated-cart/authenticated-cart.component';
+import { CartComponent } from './cart/cart.component';
 
 
 const routes: Routes = [
@@ -37,7 +40,7 @@ const routes: Routes = [
     canActivate: [AuthService]
   },
 
-
+  {path: 'cart', component: CartComponent},
   { path: 'classic-guitars', component: ClassicGuitarsComponent },
   { path: 'acoustic-guitars', component: AcousticGuitarsComponent},
   { path: 'electric-guitars', component: ElectricGuitarsComponent},

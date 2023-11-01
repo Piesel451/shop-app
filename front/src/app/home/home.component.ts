@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit{
   slideIndex = 1;
 
-
+  constructor(public authService: AuthService) {}
 
   showSlides(n: number) {
     let i;

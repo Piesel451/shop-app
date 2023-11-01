@@ -1,12 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <app-menu></app-menu>
-    <button id="logoutbtn" >Logout</button>
+    <app-menu *ngIf="!authService.isLogged()"></app-menu>
+    <app-menu-logged *ngIf="authService.isLogged()"></app-menu-logged>
+
+    <div class="container">
+        <div class="sidebar">
+            <button (click) = "showUserProfile()">Twój profil</button>
+            <button (click) = "showOrders()">Zamówienia</button>
+            <button class="logoutbtn" (click) = "logout()">Wyloguj</button>
+        </div>
+
+        <div class="user_details">
+            
+            <div *ngIf="selectedTab === 'userProfile'">
+                <p style="font-weight: bold; font-size: 20px;">Twoje dane</p>
+                <p><strong>Nazwa użytkownika:</strong> {{ currentUser?.username }}</p>
+                <p><strong>Email:</strong> {{ currentUser?.email }}</p>
+              </div>
+            
+              <div *ngIf="selectedTab === 'orders'">
+                <p style="font-weight: bold; font-size: 20px;">Twoje zamówienia</p>
+                <p>Zamowienie</p>
+              </div>
+        </div>
+    </div>
+
+
 </body>
+
 </html>

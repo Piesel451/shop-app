@@ -1,0 +1,37 @@
+<app-menu *ngIf="!authService.isLogged()"></app-menu>
+<app-menu-logged *ngIf="authService.isLogged()"></app-menu-logged>
+
+
+<h1 style="margin-left: 30%;">Twój koszyk</h1>
+<div class="cart_products" >
+    
+    <table id="customers">
+        <thead>
+          <tr>
+            <th>lp</th>
+            <th></th>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products; let i = index">
+            <td >{{ i + 1 }}</td>
+            <td class="image"><img src="./assets/images/placeholder.jpg" alt="placeholder_image" style="width: 100%;"></td>
+            <td>{{ product.name }}</td> 
+            <td></td>
+            <td>{{ product.price }} PLN</td>
+            <td><button (click) = "removeFromCart(product)">Usuń</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="cart_price">
+        <p>Wartość koszyka: {{cartCost}} PLN</p>
+        <p>Dostawa: 0 PLN</p>
+        <p>Dodatkowe koszty: 0 PLN</p>
+        <hr>
+        <h4>Razem: {{cartCost}} PLN</h4>
+      </div>
+</div>

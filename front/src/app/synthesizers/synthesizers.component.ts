@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-synthesizers',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./synthesizers.component.css']
 })
 export class SynthesizersComponent {
-
+  constructor(public authService: AuthService) {}
 }

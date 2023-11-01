@@ -1,0 +1,6 @@
+<div *ngIf="authService.isLogged()">
+    <app-authenticated-cart></app-authenticated-cart>
+  </div>
+  <div *ngIf="!authService.isLogged()">
+    <app-non-authenticated-cart></app-non-authenticated-cart>
+</div>

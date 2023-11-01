@@ -1,6 +1,8 @@
 import { Component, Input, OnInit} from '@angular/core';
 import { ApiService } from '../api.service';
 import { Product } from './product.interface';
+import { AuthService } from '../auth.service';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-product-list',
@@ -20,7 +22,7 @@ export class ProductListComponent implements OnInit{
 
   filterClickedFlag: boolean = false;
 
-  constructor(private apiService: ApiService) {}
+  constructor(private cartService: CartService,private apiService: ApiService, private authService: AuthService) {}
 
   FilterApplyHandler(valueEmitted: number) {
     if(typeof valueEmitted === "number") //jak będzie wiecej wartości emited to splitowac i zrobic case
@@ -39,32 +41,8 @@ export class ProductListComponent implements OnInit{
 
   }
 
-  // addToCart(product: any){
-  //   let cartItems: any[] = [];
-    
-  //   const existingCart = JSON.parse(localStorage.getItem('cartItems')!);
-  //   if(existingCart != null){
-  //     console.log("jest")
-  //     cartItems = existingCart;
-  //   }else{
-  //     console.log("nie ma")
-  //   }
-  //   cartItems.push(product);
-  //   console.log(cartItems)
-    
-  //   localStorage.setItem('cartItems', JSON.stringify(cartItems));
-
-  // }
-
   addToCart(product: Product){
-    this.apiService.instertToCart(product).subscribe(
-      (response) => {
-        console.log('Product added to cart:', response);
-      },
-      (error) => {
-        console.error('Error adding product to cart:', error);
-      }
-    )
+    this.cartService.addToCart(product);
   }
 
 
